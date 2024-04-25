@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 :root {
-  --background-color: black;
+  --background-color: rgb(37, 36, 36);
   --text-color: hsl(0, 0%, 100%);
 }
 body {

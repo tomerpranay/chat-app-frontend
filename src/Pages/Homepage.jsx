@@ -29,10 +29,10 @@ function Homepage() {
         justifyContent="center"
         paddingTop="3px"
         paddingBottom="3px"
-        bg="black"
+        bg="rgb(37, 36, 36)"
         // color="white"
         w="40%"
-        m="40px 0 15px 0"
+        m="40px 0 40px 0"
         borderRadius="90px"
         // borderWidth="1px"
       >
