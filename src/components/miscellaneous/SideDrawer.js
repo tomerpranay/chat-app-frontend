@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/button";
+import "./SideDrawer.css"
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Input } from "@chakra-ui/input";
 import { Box, Text } from "@chakra-ui/layout";
@@ -32,6 +33,7 @@ import { getSender } from "../../config/ChatLogics";
 import UserListItem from "../userAvatar/UserListItem";
 import { ChatState } from "../../Context/ChatProvider";
 const url = process.env.REACT_APP_BASE_URL;
+
 function SideDrawer() {
     const [search, setSearch] = useState("");
     const [searchResult, setSearchResult] = useState([]);
@@ -132,21 +134,31 @@ function SideDrawer() {
                 justifyContent="space-between"
                 alignItems="center"
                 bg="white"
-                w="100%"
+                w="60%"
+                marginTop="10px"
+                marginLeft="auto"
+                marginRight="auto"
                 p="5px 10px 5px 10px"
-                borderWidth="5px"
+                borderRadius="40px"
+                // borderWidth="5px"
             >
                 <Tooltip label="Search Users to chat" hasArrow placement="bottom-end">
                     <Button variant="ghost" onClick={onOpen}>
                         <i className="fas fa-search"></i>
-                        <Text d={{ base: "none", md: "flex" }} px={4}>
+                        <Text display={{ base: "none", md: "flex" }} px={4}>
                             Search User
                         </Text>
                     </Button>
                 </Tooltip>
-                <Text fontSize="2xl" fontFamily="Work sans">
-                    Talk-A-Tive
-                </Text>
+                {/* <Text fontSize="2xl" fontFamily="Work sans">
+                    ChatY
+                </Text> */}
+                <section class="wrapp">
+                    <div class="topp">ChatY</div>
+                    <div class="bottomm" aria-hidden="true">
+                        ChatY
+                    </div>
+                </section>
                 <div>
                     <Menu >
                         <MenuButton p={1}>

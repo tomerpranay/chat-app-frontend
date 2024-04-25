@@ -12,7 +12,7 @@ import { useEffect } from "react";
 import { useNavigate} from "react-router";
 import Login from "../components/Authentication/Login";
 import Signup from "../components/Authentication/Signup";
-
+import  "../logotext.css"
 function Homepage() {
   const navigate = useNavigate();
 
@@ -23,22 +23,30 @@ function Homepage() {
   }, [navigate]);
 
   return (
-    <Container maxW="xl" centerContent>
+    <Container maxW="lg" centerContent>
       <Box
-        d="flex"
+        display="flex"
         justifyContent="center"
-        p={3}
-        bg="white"
-        w="100%"
+        paddingTop="3px"
+        paddingBottom="3px"
+        bg="black"
+        // color="white"
+        w="40%"
         m="40px 0 15px 0"
-        borderRadius="lg"
-        borderWidth="1px"
+        borderRadius="90px"
+        // borderWidth="1px"
       >
-        <Text fontSize="4xl" fontFamily="Work sans">
-          Talk-A-Tive
-        </Text>
+        {/* <Text fontSize="4xl" fontFamily="Work sans">
+          ChatY
+        </Text> */}
+        <section class="wrapper">
+          <div class="top">ChatY</div>
+          <div class="bottom" aria-hidden="true">
+            ChatY
+          </div>
+        </section>
       </Box>
-      <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">
+      <Box bg="#EEE6E6" w="100%" p={4} borderRadius="lg" borderWidth="1px">
         <Tabs isFitted variant="soft-rounded">
           <TabList mb="1em">
             <Tab>Login</Tab>
