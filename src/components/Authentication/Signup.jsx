@@ -10,6 +10,8 @@ const url = process.env.REACT_APP_BASE_URL;
 const Signup = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+  
+
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -19,7 +21,47 @@ const Signup = () => {
   const [password, setPassword] = useState();
   const [pic, setPic] = useState();
   const [picLoading, setPicLoading] = useState(false);
-  
+  const [otp, setotp] = useState();
+  const [otpv,setotpv]=useState(false);
+  const otpmaker = async () => {
+    
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+     
+      const { data } = await axios.post(
+        `${url}/api/user/otp`,
+        {
+          email
+        },
+        config
+      );
+ console.log(email);
+      console.log(data);
+
+      toast({
+        title: "OTP Send Successfully",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setotpv(true);
+    } catch (error) {
+      toast({
+        title: "Error Occured while sending OTP",
+        description: error.response.data.message,
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setPicLoading(false);
+    }
+  };
   const submitHandler = async () => {
     setPicLoading(true);
     if (!name || !email || !password || !confirmpassword) {
@@ -43,7 +85,7 @@ const Signup = () => {
       });
       return;
     }
-    console.log(name, email, password, pic);
+    console.log(name, email, password, pic,otp);
     try {
       const config = {
         headers: {
@@ -56,7 +98,8 @@ const Signup = () => {
           name,
           email,
           password,
-          pic,
+          otp,
+          pic
         },
         config
       );
@@ -142,16 +185,49 @@ const Signup = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </FormControl>
-      <FormControl id="email" isRequired>
-        <FormLabel>Email Address</FormLabel>
-        <Input
-          borderWidth="2px"
-          borderColor="#5CA4D4"
-          type="email"
-          placeholder="Enter Your Email Address"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </FormControl>
+
+      {otpv ? (
+        <FormControl id="otp" isRequired>
+          <FormLabel>Enter OTP send to email </FormLabel>
+          <InputGroup>
+            <Input
+              borderWidth="2px"
+              borderColor="#5CA4D4"
+              type="number"
+              placeholder="Enter OTP"
+              onChange={(e) => setotp(e.target.value)}
+            />{" "}
+            <Button
+              marginLeft="7px"
+              backgroundColor="yellow"
+              onClick={otpmaker}
+            >
+              Resend OTP
+            </Button>
+          </InputGroup>
+        </FormControl>
+      ) : (
+        <FormControl id="email" isRequired>
+          <FormLabel>Email Address</FormLabel>
+          <InputGroup>
+            <Input
+              borderWidth="2px"
+              borderColor="#5CA4D4"
+              type="email"
+              placeholder="Enter Your Email Address"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+
+            <Button
+              marginLeft="7px"
+              backgroundColor="yellow"
+              onClick={otpmaker}
+            >
+              Get OTP
+            </Button>
+          </InputGroup>
+        </FormControl>
+      )}
       <FormControl id="password" isRequired>
         <FormLabel>Password</FormLabel>
         <InputGroup size="md">
@@ -188,7 +264,7 @@ const Signup = () => {
       </FormControl>
       <FormControl id="pic">
         <FormLabel>Upload your Picture</FormLabel>
-        <Input 
+        <Input
           type="file"
           p={1.5}
           accept="image/*"

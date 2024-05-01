@@ -134,7 +134,12 @@ function SideDrawer() {
                 justifyContent="space-between"
                 alignItems="center"
                 bg="white"
-                w="60%"
+                width={{
+                    base: '95%', // 0-48em
+                    md: '60%', // 48em-80em,
+                    xl: '30%', // 80em+
+                }}
+                
                 marginTop="10px"
                 marginLeft="auto"
                 marginRight="auto"
