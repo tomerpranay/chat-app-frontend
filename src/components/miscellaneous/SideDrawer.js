@@ -137,7 +137,7 @@ function SideDrawer() {
                 width={{
                     base: '95%', // 0-48em
                     md: '60%', // 48em-80em,
-                    xl: '30%', // 80em+
+                    xl: '60%', // 80em+
                 }}
                 
                 marginTop="10px"
